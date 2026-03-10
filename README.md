@@ -1,97 +1,116 @@
 # Sentiment Analysis using Natural Language Processing
 
-This project performs **Sentiment Analysis** on text data to classify whether a review or tweet expresses a **Positive** or **Negative** sentiment.  
-It uses Natural Language Processing (NLP) techniques and a machine learning model to analyze text and predict sentiment.
+This project performs **Sentiment Analysis** on text data to classify whether a review or tweet expresses **Positive** or **Negative** sentiment using Natural Language Processing (NLP) techniques and Machine Learning.
 
 ---
 
 ## Project Overview
 
-Sentiment Analysis is widely used in:
+Sentiment analysis is widely used to analyze customer feedback, product reviews, and social media posts.  
+This project processes raw text data, applies NLP preprocessing techniques, and trains a machine learning model to predict sentiment.
 
-- Customer feedback analysis
-- Product review evaluation
-- Social media monitoring
-- Market research
-
-This project processes text data, cleans it using NLP techniques, and trains a machine learning model to classify sentiments.
+The model converts text into numerical features using **TF-IDF vectorization** and trains a **Logistic Regression classifier** to perform sentiment classification.
 
 ---
 
 ## Technologies Used
 
-- Python
-- Pandas
-- NumPy
-- NLTK
-- Scikit-learn
-- TF-IDF Vectorizer
-- Logistic Regression
+- Python  
+- Pandas  
+- NumPy  
+- NLTK  
+- Scikit-learn  
+- TF-IDF Vectorizer  
+- Logistic Regression  
 
 ---
 
 ## Dataset
 
-The model is trained using a dataset of tweets/reviews labeled with sentiment values.
+The model is trained using a **Twitter sentiment dataset** containing tweets labeled with sentiment.
 
 Sentiment labels:
 
-- **0 → Negative**
-- **1 → Positive**
+| Label | Meaning |
+|------|------|
+| 0 | Positive |
+| 1 | Negative |
+
+The dataset is imbalanced, with significantly more positive samples than negative ones.
 
 ---
 
-## Workflow
+## Handling Class Imbalance
 
-The following steps were performed in this project:
+Since the dataset contains more samples from one class, the model was trained using:
 
-1. Data Loading
-2. Data Cleaning and Preprocessing
-3. Text Normalization (lowercase, remove special characters)
-4. Stopword Removal using NLTK
-5. Feature Extraction using TF-IDF Vectorizer
-6. Train-Test Split
-7. Model Training using Logistic Regression
-8. Model Evaluation and Prediction
+```python
+LogisticRegression(class_weight='balanced')
+```
 
 ---
 
-## Model Evaluation
+### Machine Learning Pipeline
 
-The model performance is evaluated using:
-
-- Accuracy
-- Precision
-- Recall
-- F1 Score
+-Data Loading
+-Data Cleaning and Preprocessing
+-Text Normalization (lowercase, remove special characters)
+-Stopword Removal using NLTK
+-Feature Extraction using TF-IDF Vectorization
+-Train-Test Split
+-Model Training using Logistic Regression
+-Model Evaluation using classification metrics
+-Custom sentiment prediction
 
 ---
 
-## Example Prediction
+## Model Performance
 
-Input Review: This phone is amazing and works perfectly!
+The trained Logistic Regression model achieved the following evaluation results:
 
+| Metric | Score |
+|------|------|
+| Accuracy | ~92% |
+| Macro F1 Score | 0.77 |
+| Weighted F1 Score | 0.93 |
+
+### Classification Report
+
+| Class | Precision | Recall | F1 Score | Support |
+|------|------|------|------|------|
+| Negative | 0.46 | 0.81 | 0.58 | 456 |
+| Positive | 0.98 | 0.93 | 0.95 | 5937 |
+
+The model performs strongly in detecting **positive sentiment** while maintaining reasonable detection of **negative sentiment**, despite the dataset being imbalanced.
+
+---
+
+## Example Predictions
+
+Input: I love this product  
 Prediction: Positive
 
-Input Review: Worst product I have ever bought.
+Input: I am very happy today  
+Prediction: Positive
 
+Input: This is terrible and I hate it  
 Prediction: Negative
 
 ---
 
 ## Applications
 
-- Customer sentiment monitoring
-- Brand reputation analysis
-- Product review analysis
-- Social media sentiment tracking
+- Customer feedback analysis  
+- Product review sentiment detection  
+- Social media sentiment monitoring  
+- Brand reputation analysis  
 
 ---
 
 ## Future Improvements
 
-- Try advanced models like Support Vector Machines
-- Use Deep Learning (LSTM or BERT)
-- Deploy as a web application
+- Train additional models such as SVM or Random Forest  
+- Implement deep learning models like LSTM or BERT  
+- Deploy the model using Streamlit or Flask  
 
 ---
